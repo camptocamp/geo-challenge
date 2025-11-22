@@ -24,7 +24,7 @@ jobs:
           push: true
           tags: ghcr.io/camptocamp/geo-challenge:latest
     outputs:
-      docker_img_tag: ${{ steps.push_docker_image.outputs.digest }}
+      docker_img_digest: ${{ steps.push_docker_image.outputs.digest }}
 
   trigger_deploy:
     runs-on: ubuntu-latest
@@ -40,6 +40,6 @@ jobs:
               workflow_id: 'update-geo-challenge-image.yaml',
               ref: 'main',
               inputs: {
-                docker_img_tag: '${{ needs.build_and_publish.outputs.docker_img_tag }}'
+                img_digest: '${{ needs.build_and_publish.outputs.docker_img_digest }}'
               }
             });
