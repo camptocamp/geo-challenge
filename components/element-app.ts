@@ -23,6 +23,7 @@ import {
   startGame,
   startRound,
 } from "../game-state";
+import { trackEvent, trackPageView } from "../matomo";
 import type { Coordinate } from "ol/coordinate";
 import type { GameState } from "../game-state";
 import type { CesiumWidget } from "@cesium/engine";
@@ -109,8 +110,8 @@ export class ElementApp extends LitElement {
       country: event.detail,
     };
 
-    // trackEvent("country_selected", { country: event.detail.name });
-    // trackEvent("language_selected", { language: document.documentElement.lang });
+    trackEvent("Game", "country_selected", event.detail);
+    trackEvent("Game", "language_selected", document.documentElement.lang);
   }
 
   newGame() {
@@ -127,7 +128,7 @@ export class ElementApp extends LitElement {
 
   openAboutDialog() {
     this.aboutElement.open = true;
-    // trackEvent("about_opened");
+    trackPageView("About Dialog");
   }
 
   handleGuess(event: CustomEvent<Coordinate>) {
