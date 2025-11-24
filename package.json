@@ -10,8 +10,7 @@
   },
   "scripts": {
     "start": "vite serve",
-    "build": "vite build",
-    "gh-pages": "rm -rf dist && npm run build && gh-pages -d dist"
+    "build": "vite build"
   },
   "dependencies": {
     "@awesome.me/webawesome": "3.0.0",
@@ -30,7 +29,6 @@
     "ol": "10.7.0"
   },
   "devDependencies": {
-    "gh-pages": "6.3.0",
     "vite": "7.2.4",
     "vite-plugin-static-copy": "3.1.4"
   }
