@@ -2,7 +2,7 @@
 
 This project is a web-based geography guessing game. The user is shown a fixed location in a 3D map view and has to guess where it is on a 2D map.
 
-[online demo](https://camptocamp.github.io/geo-challenge/)
+[online demo](https://geo-challenge.labs.camptocamp.com/)
 
 ## Game Features
 
@@ -45,6 +45,15 @@ npm run build
 ```
 
 The output will be placed in the `dist` directory.
+
+## Deployment
+
+[ArgoCD](hhttps://argocd.apps.green.gs-ch-prod.camptocamp.com/applications?proj=plg-geo-challenge-prod)
+
+Pipeline:
+
+1. On push to the `master` branch, GitHub Actions automatically builds and publishes a Docker image to `ghcr.io/camptocamp/geo-challenge:latest`.
+2. `camptocamp/argocd-gs-plg-apps:update-geo-challenge-image.yaml` is triggered to update the image in the argocd configuration.
 
 ## Libraries used
 
