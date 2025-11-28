@@ -6,6 +6,9 @@ import { distance as distanceBetweenPoints } from "@turf/distance";
 import { fromExtent } from "ol/geom/Polygon";
 
 import countries from "./data/countries.json" with { type: "json" };
+import { LOCATIONS, type CountryCode } from "./locations";
+
+export type { CountryCode } from "./locations";
 
 export const countriesGeometry: { [key in CountryCode]: any } = {
   ch: multiPolygon(countries.features.find((f: any) => f.properties.code === "ch").geometry.coordinates),
@@ -31,8 +34,6 @@ export const countriesMaxDistance: { [key in CountryCode]: number } = {
   de: 879452,
 };
 
-export type CountryCode = "ch" | "fr" | "de";
-
 export function scoreFromDistance(distance: number, country: CountryCode): number {
   // https://www.reddit.com/r/geoguessr/comments/zqwgnr/how_the_hell_does_this_game_calculate_damage/
   const size = countriesMaxDistance[country]; // approximate max distance in meters
@@ -41,12 +42,14 @@ export function scoreFromDistance(distance: number, country: CountryCode): numbe
 
 export function randomPositionInCountry(country: CountryCode): [number, number] {
   const polygon = countriesGeometry[country];
-  let position = randomPosition(bbox(polygon));
+  const bboxes = LOCATIONS[country];
+  const selectedBbox = bboxes[Math.floor(Math.random() * bboxes.length)];
+
   while (true) {
+    const position = randomPosition(selectedBbox as [number, number, number, number]);
     if (booleanPointInPolygon(position, polygon)) {
       return position as [number, number];
     }
-    position = randomPosition(bbox(polygon));
   }
 }
 
