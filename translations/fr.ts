@@ -44,7 +44,7 @@ export default {
     "Utilisez la mini-carte dans le coin pour placer votre estimation. Cliquez n'importe où sur la carte pour poser un marqueur, puis appuyez sur Deviner. Vous pouvez ajuster votre marqueur autant de fois que vous le souhaitez avant de confirmer.",
   tutorial_step4_title: "Gagnez des points et rivalisez",
   tutorial_step4_description:
-    "Votre score dépend de la proximité de votre estimation avec l'emplacement réel - une estimation parfaite rapporte 5000 points ! Complétez 3 tours pour terminer une partie, puis enregistrez votre score au classement et défiez les autres.",
+    "Votre score dépend de la proximité de votre estimation avec l'emplacement réel - une estimation parfaite rapporte 5000 points ! Complétez 3 tours pour terminer une partie. Votre score final est la moyenne de tous les tours, donc chaque estimation compte ! Enregistrez votre score au classement et défiez les autres.",
 
   about_content: `
     <p>untranslated</p>

@@ -101,6 +101,14 @@ export default class ElementCountrySelector extends Closable(LitElement) {
     this.dispatchEvent(new CustomEvent("show-tutorial"));
   }
 
+  firstUpdated(): void {
+    this.firstElementChild?.addEventListener("wa-hide", (event) => {
+      if (!this.selectedCountry) {
+        event.preventDefault();
+      }
+    });
+  }
+
   override createRenderRoot() {
     return this;
   }

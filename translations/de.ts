@@ -44,7 +44,7 @@ export default {
     "Verwenden Sie die Mini-Karte in der Ecke, um Ihre Schätzung zu platzieren. Klicken Sie irgendwo auf die Karte, um einen Marker zu setzen, und drücken Sie dann Raten. Sie können Ihren Marker beliebig oft anpassen, bevor Sie bestätigen.",
   tutorial_step4_title: "Punkte sammeln und konkurrieren",
   tutorial_step4_description:
-    "Ihre Punktzahl hängt davon ab, wie nah Ihre Schätzung am tatsächlichen Standort liegt - eine perfekte Schätzung bringt 5000 Punkte! Absolvieren Sie 3 Runden, um ein Spiel zu beenden, speichern Sie dann Ihre Punktzahl in der Bestenliste und fordern Sie andere heraus.",
+    "Ihre Punktzahl hängt davon ab, wie nah Ihre Schätzung am tatsächlichen Standort liegt - eine perfekte Schätzung bringt 5000 Punkte! Absolvieren Sie 3 Runden, um ein Spiel zu beenden. Ihre Endpunktzahl ist der Durchschnitt aller Runden, also zählt jede Schätzung! Speichern Sie Ihre Punktzahl in der Bestenliste und fordern Sie andere heraus.",
 
   about_content: `
     <p>untranslated</p>

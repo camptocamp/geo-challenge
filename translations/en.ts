@@ -44,7 +44,7 @@ export default {
     "Use the mini-map in the bottom corner to place your guess. Click anywhere on the map to drop a marker, then press the Guess button. You can adjust your marker as many times as you want before confirming.",
   tutorial_step4_title: "Earn points & compete",
   tutorial_step4_description:
-    "Your score depends on how close your guess is to the real location - a perfect guess earns 5000 points! Complete 3 rounds to finish a game, then save your score to the leaderboard and challenge others.",
+    "Your score depends on how close your guess is to the real location - a perfect guess earns 5000 points! Complete 3 rounds to finish a game. Your final score is the average of all rounds, so every guess counts! Save your score to the leaderboard and challenge others.",
 
   about_content: `
     <h5>Hi! We’re Camptocamp, and we love maps.</h5>
