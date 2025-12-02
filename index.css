@@ -28,16 +28,16 @@
   --wa-color-brand-fill-loud: var(--wa-color-brand-60);
 }
 @layer wa-theme-overrides {
-  wa-button::part(base) {
+  wa-button.brand::part(base) {
     text-transform: uppercase;
     font-size: 13px;
     padding: 8px 20px;
     height: auto;
   }
-  wa-button::part(base):hover {
+  wa-button.brand::part(base):hover {
     background-color: var(--c2c-color-hover);
   }
-  wa-button[appearance="outlined"]::part(base) {
+  wa-button.brand[appearance="outlined"]::part(base) {
     color: var(--wa-color-brand);
     border-color: var(--wa-color-brand);
   }
@@ -179,6 +179,77 @@ element-country-selector .country-cards wa-card .flag {
 
 element-leaderboard tr.highlight {
   background-color: var(--wa-color-focus);
+}
+
+/* Tutorial styles */
+element-tutorial .tutorial-content {
+  text-align: center;
+  max-width: 500px;
+}
+
+element-tutorial .step-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--wa-color-surface-border);
+  transition: background-color 0.2s ease;
+}
+
+element-tutorial .step-dot.active {
+  background-color: var(--wa-color-brand);
+}
+
+element-tutorial .step-dot.completed {
+  background-color: var(--wa-color-brand-80);
+}
+
+element-tutorial .tutorial-content h2 {
+  margin: 0;
+  font-size: var(--wa-font-size-xl);
+}
+
+element-tutorial .tutorial-content p {
+  margin: 0;
+  color: var(--wa-color-text-muted);
+  line-height: 1.5;
+}
+
+element-tutorial .tutorial-image {
+  max-width: 100%;
+  max-height: 40vh;
+  object-fit: contain;
+  border-radius: var(--wa-border-radius-m);
+  border: 1px solid var(--wa-color-surface-border);
+}
+
+@media (max-width: 600px) {
+  element-tutorial .tutorial-dialog::part(dialog) {
+    max-height: 90vh;
+    max-width: 95vw;
+    margin: auto;
+  }
+
+  element-tutorial .tutorial-content {
+    max-width: 100%;
+  }
+
+  element-tutorial .tutorial-image {
+    max-height: 30vh;
+  }
+
+  element-tutorial .tutorial-content h2 {
+    font-size: var(--wa-font-size-l);
+  }
+
+  element-tutorial .tutorial-content p {
+    font-size: var(--wa-font-size-s);
+  }
+}
+
+element-country-selector .country-selector-footer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 element-scores .save_score {

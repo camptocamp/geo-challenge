@@ -30,6 +30,22 @@ export default {
   username_taken: "Benutzername bereits vergeben",
   save: "Speichern",
 
+  tutorial_back: "Zurück",
+  tutorial_next: "Weiter",
+  tutorial_start: "Los geht's!",
+  tutorial_step1_title: "Wählen Sie Ihr Land",
+  tutorial_step1_description:
+    "Wählen Sie zunächst ein Land aus. Jedes Land bietet eine andere Herausforderung - von den Schweizer Alpen über die französische Küste bis zu den deutschen Ebenen. Sie können das Land jederzeit wechseln, indem Sie ein neues Spiel starten.",
+  tutorial_step2_title: "Erkunden Sie die Aussicht",
+  tutorial_step2_description:
+    "Sie werden an einem zufälligen Ort im Land abgesetzt. Ziehen Sie, um die 3D-Landschaft zu betrachten und suchen Sie nach Hinweisen - Berge, Täler, Küsten oder andere erkennbare Merkmale, die Ihnen helfen könnten, Ihren Standort zu identifizieren.",
+  tutorial_step3_title: "Machen Sie Ihre Schätzung",
+  tutorial_step3_description:
+    "Verwenden Sie die Mini-Karte in der Ecke, um Ihre Schätzung zu platzieren. Klicken Sie irgendwo auf die Karte, um einen Marker zu setzen, und drücken Sie dann Raten. Sie können Ihren Marker beliebig oft anpassen, bevor Sie bestätigen.",
+  tutorial_step4_title: "Punkte sammeln und konkurrieren",
+  tutorial_step4_description:
+    "Ihre Punktzahl hängt davon ab, wie nah Ihre Schätzung am tatsächlichen Standort liegt - eine perfekte Schätzung bringt 5000 Punkte! Absolvieren Sie 3 Runden, um ein Spiel zu beenden, speichern Sie dann Ihre Punktzahl in der Bestenliste und fordern Sie andere heraus.",
+
   about_content: `
     <p>untranslated</p>
   `,

@@ -30,6 +30,22 @@ export default {
   username_taken: "Username already taken",
   save: "Save",
 
+  tutorial_back: "Back",
+  tutorial_next: "Next",
+  tutorial_start: "Let's play!",
+  tutorial_step1_title: "Choose your country",
+  tutorial_step1_description:
+    "Start by selecting a country to play in. Each country offers a different challenge - from the Swiss Alps to the French coastline or the German plains. You can change your country anytime by starting a new game.",
+  tutorial_step2_title: "Explore the view",
+  tutorial_step2_description:
+    "You'll be dropped at a random location somewhere in the country. Drag to look around the 3D landscape and search for clues - mountains, valleys, coastlines, or any recognizable features that might help you identify where you are.",
+  tutorial_step3_title: "Make your guess",
+  tutorial_step3_description:
+    "Use the mini-map in the bottom corner to place your guess. Click anywhere on the map to drop a marker, then press the Guess button. You can adjust your marker as many times as you want before confirming.",
+  tutorial_step4_title: "Earn points & compete",
+  tutorial_step4_description:
+    "Your score depends on how close your guess is to the real location - a perfect guess earns 5000 points! Complete 3 rounds to finish a game, then save your score to the leaderboard and challenge others.",
+
   about_content: `
     <h5>Hi! We’re Camptocamp, and we love maps.</h5>
     <p>
