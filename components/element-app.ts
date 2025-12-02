@@ -14,6 +14,7 @@ import "./element-result";
 import "./element-country-selector";
 import "./element-scores";
 import "./element-about";
+import "./element-tutorial";
 
 import {addBonusModelClickCallback, createCesiumWidget, setCameraPosition} from "../cesium";
 import {
@@ -51,6 +52,9 @@ export class ElementApp extends LitElement {
   @query('element-scores') scoresElement!: ElementScores;
   @query('element-about') aboutElement!: ElementAbout;
 
+  @state() showTutorial = false;
+  @state() showCountrySelector = false;
+
   updated() {
     if (this.gameState.country !== null && !roundInProgress(this.gameState)) {
       // First game round after country selection
@@ -65,8 +69,13 @@ export class ElementApp extends LitElement {
   render() {
     return html`
       <element-about></element-about>
-      <element-country-selector .open="${this.gameState.country == null}"
+      <element-tutorial
+        .open="${this.showTutorial}"
+        @tutorial-complete="${this.handleTutorialComplete}"
+      ></element-tutorial>
+      <element-country-selector .open="${this.showCountrySelector}"
         @country-selected="${this.handleCountrySelected}"
+        @show-tutorial="${this.handleShowTutorial}"
       ></element-country-selector>
       <div id="cesium"></div>
       <div class="header">
@@ -102,6 +111,27 @@ export class ElementApp extends LitElement {
     sphereMode.active = true;
     const compassBar = this.querySelector("cesium-compass-bar");
     compassBar.scene = this.viewer.scene;
+
+    // Show tutorial on first visit, otherwise show country selector
+    if (this.gameState.country === null) {
+      const hasSeenTutorial = localStorage.getItem("hasSeenTutorial");
+      if (hasSeenTutorial) {
+        this.showCountrySelector = true;
+      } else {
+        this.showTutorial = true;
+      }
+    }
+  }
+
+  handleTutorialComplete() {
+    localStorage.setItem("hasSeenTutorial", "true");
+    this.showTutorial = false;
+    this.showCountrySelector = true;
+  }
+
+  handleShowTutorial() {
+    this.showCountrySelector = false;
+    this.showTutorial = true;
   }
 
   handleCountrySelected(event: CustomEvent) {

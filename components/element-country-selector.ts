@@ -64,10 +64,15 @@ export default class ElementCountrySelector extends Closable(LitElement) {
             <wa-option value="en" ?selected=${lang === "en"}>English</wa-option>
           </wa-select>
         </div>
-        <wa-button slot="footer" variant="brand" size="small" pill @click=${this.confirm} ?disabled=${!this.selectedCountry}>
-          <wa-icon slot="end" name="arrow-right"></wa-icon>
-          ${this.localize.term("play")}
-        </wa-button>
+        <div slot="footer" class="country-selector-footer">
+          <wa-button appearance="plain" @click=${this.showTutorial}>
+            <wa-icon name="circle-question"></wa-icon>
+          </wa-button>
+          <wa-button variant="brand" size="small" pill @click=${this.confirm} ?disabled=${!this.selectedCountry}>
+            <wa-icon slot="end" name="arrow-right"></wa-icon>
+            ${this.localize.term("play")}
+          </wa-button>
+        </div>
       </wa-dialog>
     `;
   }
@@ -90,6 +95,10 @@ export default class ElementCountrySelector extends Closable(LitElement) {
   selectLanguage(event: Event) {
     const langCode = (event.target as HTMLSelectElement).value;
     document.documentElement.lang = langCode;
+  }
+
+  showTutorial() {
+    this.dispatchEvent(new CustomEvent("show-tutorial"));
   }
 
   override createRenderRoot() {
