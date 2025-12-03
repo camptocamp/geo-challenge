@@ -18,7 +18,7 @@ export default class ElementAbout extends Closable(LitElement) {
         ${unsafeHTML(this.localize.term("about_content").replace("{lang}", this.localize.lang()))}
 
         <div slot="footer">
-          <wa-button slot="footer" variant="brand" appearance="outlined" size="small" data-dialog="close" pill>
+          <wa-button variant="brand" appearance="outlined" size="small" data-dialog="close" pill>
             <wa-icon slot="end" name="arrow-right"></wa-icon>
             ${this.localize.term("close")}
           </wa-button>

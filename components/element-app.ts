@@ -7,6 +7,7 @@ import { LocalizeController } from "@shoelace-style/localize";
 import CesiumSphereCamera from "@geoblocks/cesium-sphere-camera";
 
 import "@awesome.me/webawesome/dist/components/button/button.js";
+import "@awesome.me/webawesome/dist/components/icon/icon.js";
 
 import "@geoblocks/cesium-compass-bar";
 import "./element-guess";
