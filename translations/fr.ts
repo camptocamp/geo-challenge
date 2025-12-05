@@ -47,6 +47,40 @@ export default {
     "Votre score dépend de la proximité de votre estimation avec l'emplacement réel - une estimation parfaite rapporte 5000 points ! Complétez 3 tours pour terminer une partie. Votre score final est la moyenne de tous les tours, donc chaque estimation compte ! Enregistrez votre score au classement et défiez les autres.",
 
   about_content: `
-    <p>untranslated</p>
+    <h5>Salut ! Nous sommes Camptocamp et nous adorons les cartes.</h5>
+    <p>
+      Tout a commencé il y a près de 25 ans avec un projet Open Source pour
+      les passionnés de montagne : camptocamp.org. Depuis, nous n'avons
+      jamais arrêté de cartographier. Aujourd'hui, nous créons des cartes
+      intelligentes, élégantes et fiables pour toutes sortes de clients :
+      institutions publiques, organisations à but non lucratif et
+      entreprises de toutes tailles.
+    </p>
+    <p>
+      Notre mission ? Aider chacun à explorer, comprendre et naviguer dans
+      le monde grâce à des outils cartographiques intuitifs, précis et
+      innovants.
+    </p>
+    <p>
+      Nous pensons aussi que le travail doit rester plaisant. C'est comme ça
+      que le jeu <strong>Geo Challenge</strong> est né. Au début, c'était juste un petit
+      défi interne pour voir qui connaissait le mieux son pays. Mais
+      l'esprit de compétition a pris le dessus, et on s'est dit : pourquoi
+      garder tout ce plaisir pour nous ?
+    </p>
+    <p>
+      Et si les cartes sont notre premier amour, ce n'est pas le seul. Nous
+      sommes aussi Gold Partner de l'ERP Open Source Odoo, et nous veillons
+      au bon fonctionnement des infrastructures IT de nos clients pour
+      qu'ils puissent se concentrer sur leur cœur de métier. Nos compétences
+      sont variées, mais elles ont toutes un point commun : notre engagement
+      envers la philosophie Open Source et notre envie de créer des
+      expériences numériques humaines et durables.
+    </p>
+    <p>
+      Curieux d'en savoir plus ou envie de collaborer avec nous ?
+      <a href="https://camptocamp.com/{lang}/contact" target="_blank">
+        Faites-nous signe.</a> On vous répondra volontiers.
+    </p>
   `,
 } as Translation;

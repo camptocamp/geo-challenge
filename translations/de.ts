@@ -47,6 +47,41 @@ export default {
     "Ihre Punktzahl hängt davon ab, wie nah Ihre Schätzung am tatsächlichen Standort liegt - eine perfekte Schätzung bringt 5000 Punkte! Absolvieren Sie 3 Runden, um ein Spiel zu beenden. Ihre Endpunktzahl ist der Durchschnitt aller Runden, also zählt jede Schätzung! Speichern Sie Ihre Punktzahl in der Bestenliste und fordern Sie andere heraus.",
 
   about_content: `
-    <p>untranslated</p>
+    <h5>Hi! Wir sind Camptocamp und wir lieben Karten.</h5>
+    <p>
+      Alles begann vor fast 25 Jahren mit einem Open-Source-Projekt für
+      Outdoor-Fans: camptocamp.org. Seither beschäftigen wir uns tagtäglich
+      mit Kartografie. Heute entwickeln wir intelligente, visuell
+      ansprechende und zuverlässige Karten für ganz unterschiedliche
+      Kundinnen und Kunden: öffentliche Verwaltungen, Non-Profit-Organisationen
+      und Unternehmen jeder Art und Grösse.
+    </p>
+    <p>
+      Unsere Mission? Menschen dabei zu unterstützen, die Welt mit
+      intuitiven, präzisen und innovativen Kartentools zu entdecken, zu
+      verstehen und sich darin zurechtzufinden.
+    </p>
+    <p>
+      Wir finden: Arbeit darf auch Spass machen. So entstand die
+      <strong>Geo Challenge</strong>. Was als kleiner interner Wettbewerb begann, bei dem
+      es darum ging, wer sein Heimatland am besten kennt, weckte rasch
+      unseren Ehrgeiz. Und dann war klar, dass wir das Vergnügen mit anderen
+      teilen möchten.
+    </p>
+    <p>
+      Und obwohl Karten unsere erste Leidenschaft sind, sind sie nicht die
+      einzige. Wir sind zudem Gold Partner der Open Source ERP Software
+      Odoo und sorgen dafür, dass die IT-Infrastrukturen unserer Kundinnen
+      und Kunden reibungslos funktionieren, damit sie sich auf das
+      konzentrieren können, was sie am besten können. Unsere vielseitigen
+      Kompetenzen haben eines gemeinsam: unser Engagement für die
+      Open-Source-Philosophie und unsere Leidenschaft für digitale
+      Erlebnisse, die menschlich sind und Bestand haben.
+    </p>
+    <p>
+      Neugierig geworden oder Interesse an einer Zusammenarbeit?
+      <a href="https://camptocamp.com/{lang}/contact" target="_blank">
+        Melden Sie sich gern bei uns.</a> Wir freuen uns auf Sie.
+    </p>
   `,
 } as Translation;

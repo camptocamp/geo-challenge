@@ -47,10 +47,10 @@ export default {
     "Your score depends on how close your guess is to the real location - a perfect guess earns 5000 points! Complete 3 rounds to finish a game. Your final score is the average of all rounds, so every guess counts! Save your score to the leaderboard and challenge others.",
 
   about_content: `
-    <h5>Hi! We’re Camptocamp, and we love maps.</h5>
+    <h5>Hi! We're Camptocamp and we love maps.</h5>
     <p>
-      It all started over 20 years ago with an Open Source project for
-      outdoor enthusiasts—camptocamp.org—and we’ve been mapping ever since.
+      It all started nearly 25 years ago with an Open Source project for
+      outdoor enthusiasts—camptocamp.org—and we've been mapping ever since.
       These days, we create smart, beautiful, and reliable maps for all
       kinds of clients: governments, non-profits, and companies of every
       shape and size.
@@ -61,12 +61,13 @@ export default {
     </p>
     <p>
       We also believe work should come with a good dose of fun, which is how
-      Geo Challenge was born. At first, it was just an in-house challenge to see
-      who knew their home country best. But then the competitive spirit
-      kicked in, and we thought: why keep all this fun to ourselves?
+      this game <strong>Geo Challenge</strong> was born. At first, it was just an in-house
+      challenge to see who knew their home country best. But then the
+      competitive spirit kicked in, and we thought: why keep all this fun to
+      ourselves?
     </p>
     <p>
-      And while maps are our first love, they’re not our only one. We’re
+      And while maps are our first love, they're not our only one. We're
       also a Gold Partner for the Open Source ERP software Odoo, and we keep
       IT infrastructures running smoothly so our clients can focus on what
       they do best. Our diverse set of skills are all united by our
@@ -76,8 +77,7 @@ export default {
     <p>
       Curious about what we do or thinking about working together?
       <a href="https://camptocamp.com/{lang}/contact" target="_blank">
-        Let us know. We’ll be in touch!
-      </a>
+        Let us know.</a> We'll be in touch!
     </p>
   `,
 } as Translation;
