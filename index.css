@@ -67,6 +67,13 @@ body,
   height: 100%;
   margin: 0;
   overflow: hidden;
+  /* Prevent pull-to-refresh and overscroll behavior on mobile */
+  overscroll-behavior: none;
+}
+
+/* Prevent unwanted gestures on the Cesium canvas */
+#cesium {
+  touch-action: none;
 }
 
 .hidden {
@@ -81,6 +88,9 @@ body,
   position: absolute;
   top: 0;
   padding: 16px;
+  padding-top: max(16px, env(safe-area-inset-top));
+  padding-left: max(16px, env(safe-area-inset-left));
+  padding-right: max(16px, env(safe-area-inset-right));
   gap: 8px;
 }
 
@@ -88,6 +98,7 @@ body,
   display: flex;
   gap: 8px;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .header-logo {
@@ -96,7 +107,7 @@ body,
 }
 .header-logo img {
   background-color: #fff;
-  height: 48px;
+  height: 2.5rem;
 }
 
 cesium-compass-bar {
@@ -106,6 +117,24 @@ cesium-compass-bar {
   border-radius: var(--wa-border-radius-m);
   background-color: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(2px);
+}
+
+/* Mobile header adjustments */
+@media (max-width: 600px) {
+  .header {
+    padding: 8px;
+    padding-top: max(8px, env(safe-area-inset-top));
+    padding-left: max(8px, env(safe-area-inset-left));
+    padding-right: max(8px, env(safe-area-inset-right));
+    gap: 4px;
+  }
+  cesium-compass-bar {
+    flex: 1 1 100px;
+    min-width: 80px;
+  }
+  .header .buttons wa-button::part(base) {
+    padding: 4px 8px;
+  }
 }
 cesium-compass-bar::part(label) {
   font-size: 12px;
