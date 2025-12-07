@@ -49,12 +49,8 @@ export default class ElementUsername extends Closable(LitElement) {
     this.open = false;
   }
 
-  firstUpdated(): void {
-    this.firstElementChild?.addEventListener("wa-hide", (event) => {
-      if (!this.valid) {
-        event.preventDefault();
-      }
-    });
+  override canClose(): boolean {
+    return this.valid;
   }
 
   override createRenderRoot() {

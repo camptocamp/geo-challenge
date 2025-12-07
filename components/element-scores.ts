@@ -107,6 +107,10 @@ export default class ElementScores extends Closable(LitElement) {
   override createRenderRoot() {
     return this;
   }
+
+  override canClose(): boolean {
+    return !this.usernameElement.open;
+  }
 }
 
 declare global {

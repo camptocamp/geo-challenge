@@ -101,12 +101,10 @@ export default class ElementCountrySelector extends Closable(LitElement) {
     this.dispatchEvent(new CustomEvent("show-tutorial"));
   }
 
-  firstUpdated(): void {
-    this.firstElementChild?.addEventListener("wa-hide", (event) => {
-      if (!this.selectedCountry) {
-        event.preventDefault();
-      }
-    });
+  override canClose(): boolean {
+    // Never allow closing with Escape - user must click Play button
+    // to properly start the game (which dispatches country-selected event)
+    return false;
   }
 
   override createRenderRoot() {
