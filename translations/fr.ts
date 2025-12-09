@@ -79,7 +79,7 @@ export default {
     </p>
     <p>
       Curieux d'en savoir plus ou envie de collaborer avec nous ?
-      <a href="https://camptocamp.com/{lang}/contact" target="_blank">
+      <a href="https://camptocamp.com/geo-challenge_formulaire" target="_blank">
         Faites-nous signe.</a> On vous répondra volontiers.
     </p>
   `,

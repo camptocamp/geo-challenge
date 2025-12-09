@@ -76,7 +76,7 @@ export default {
     </p>
     <p>
       Curious about what we do or thinking about working together?
-      <a href="https://camptocamp.com/{lang}/contact" target="_blank">
+      <a href="https://camptocamp.com/geo-challenge_form" target="_blank">
         Let us know.</a> We'll be in touch!
     </p>
   `,

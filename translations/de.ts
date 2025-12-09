@@ -80,7 +80,7 @@ export default {
     </p>
     <p>
       Neugierig geworden oder Interesse an einer Zusammenarbeit?
-      <a href="https://camptocamp.com/{lang}/contact" target="_blank">
+      <a href="https://camptocamp.com/geo-challenge_formular" target="_blank">
         Melden Sie sich gern bei uns.</a> Wir freuen uns auf Sie.
     </p>
   `,
