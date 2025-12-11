@@ -32,19 +32,19 @@ export default {
 
   tutorial_back: "Zurück",
   tutorial_next: "Weiter",
-  tutorial_start: "Los geht's!",
-  tutorial_step1_title: "Wählen Sie Ihr Land",
+  tutorial_start: "Los geht’s!",
+  tutorial_step1_title: "Wähle dein Land",
   tutorial_step1_description:
-    "Wählen Sie zunächst ein Land aus. Jedes Land bietet eine andere Herausforderung - von den Schweizer Alpen über die französische Küste bis zu den deutschen Ebenen. Sie können das Land jederzeit wechseln, indem Sie ein neues Spiel starten.",
-  tutorial_step2_title: "Erkunden Sie die Aussicht",
+    "Beginne damit, ein Land auszuwählen, in dem du spielen möchtest. Jedes Land bietet eine andere Herausforderung, von den Schweizer Alpen über die französische Küste bis zu den deutschen Ebenen. Um dein Land zu ändern und ein neues Spiel zu starten, klicke auf das Globus-Symbol oben in der rechten Ecke.",
+  tutorial_step2_title: "Erkunde die Ansicht",
   tutorial_step2_description:
-    "Sie werden an einem zufälligen Ort im Land abgesetzt. Ziehen Sie, um die 3D-Landschaft zu betrachten und suchen Sie nach Hinweisen - Berge, Täler, Küsten oder andere erkennbare Merkmale, die Ihnen helfen könnten, Ihren Standort zu identifizieren.",
-  tutorial_step3_title: "Machen Sie Ihre Schätzung",
+    "Du wirst irgendwo an einem zufälligen Ort abgesetzt. Ziehe mit der Maus bzw. deinem Finger, um dich in der 3D-Landschaft umzusehen, und halte nach Hinweisen Ausschau: Bergen, Tälern, Küstenlinien oder anderen erkennbaren Merkmalen, die dir helfen, deinen Standort zu bestimmen.",
+  tutorial_step3_title: "Gib deinen Tipp ab",
   tutorial_step3_description:
-    "Verwenden Sie die Mini-Karte in der Ecke, um Ihre Schätzung zu platzieren. Klicken Sie irgendwo auf die Karte, um einen Marker zu setzen, und drücken Sie dann Raten. Sie können Ihren Marker beliebig oft anpassen, bevor Sie bestätigen.",
-  tutorial_step4_title: "Punkte sammeln und konkurrieren",
+    "Verwende die Mini-Karte in der unteren Ecke, um deinen Tipp abzugeben. Klicke irgendwo auf die Karte, um eine Markierung zu setzen, und klicke dann auf die Schaltfläche „Raten“. Du kannst deine Markierung beliebig oft anpassen, bevor du bestätigst.",
+  tutorial_step4_title: "Sammle Punkte & tritt gegen andere an",
   tutorial_step4_description:
-    "Ihre Punktzahl hängt davon ab, wie nah Ihre Schätzung am tatsächlichen Standort liegt - eine perfekte Schätzung bringt 5000 Punkte! Absolvieren Sie 3 Runden, um ein Spiel zu beenden. Ihre Endpunktzahl ist der Durchschnitt aller Runden, also zählt jede Schätzung! Speichern Sie Ihre Punktzahl in der Bestenliste und fordern Sie andere heraus.",
+    "Deine Punktzahl hängt davon ab, wie nah dein Tipp am tatsächlichen Ort liegt. Ein perfekter Tipp erzielt 5000 Punkte! Schliesse 3 Runden ab, um ein Spiel zu beenden. Deine Endpunktzahl ist der Durchschnitt aller Runden, also zählt jeder Tipp. Speichere deine Punktzahl in der Bestenliste und fordere andere heraus.",
 
   about_content: `
     <h5>Hi! Wir sind Camptocamp und wir lieben Karten.</h5>
