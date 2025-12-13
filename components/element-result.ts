@@ -40,7 +40,7 @@ export default class ElementResult extends Closable(LitElement) {
             <wa-icon slot="end" name="arrow-right" variant="solid"></wa-icon>
             ${this.localize.term("next_round")}
           </wa-button>
-          <wa-button variant="brand" size="small" pill data-dialog="close" @click="${this.handleGameOver}" class="${isGameOver ? '' : 'hidden'}">
+          <wa-button variant="brand" size="small" pill data-dialog="close" class="${isGameOver ? '' : 'hidden'}">
             <wa-icon slot="end" name="trophy" variant="solid"></wa-icon>
             ${this.localize.term("scores")}
           </wa-button>
@@ -55,11 +55,6 @@ export default class ElementResult extends Closable(LitElement) {
       unit: "kilometer",
       maximumFractionDigits: 1,
     });
-  }
-
-
-  handleGameOver() {
-    this.dispatchEvent(new CustomEvent("gameOver"));
   }
 
   override createRenderRoot() {

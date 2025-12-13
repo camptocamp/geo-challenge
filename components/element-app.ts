@@ -20,6 +20,7 @@ import "./element-tutorial";
 import {addBonusModelClickCallback, createCesiumWidget, setCameraPosition} from "../cesium";
 import {
   endRound,
+  gameOver,
   gameStateContext,
   roundInProgress,
   startGame,
@@ -95,7 +96,7 @@ export class ElementApp extends LitElement {
         </div>
       </div>
       <element-guess ?hidden="${!roundInProgress(this.gameState)}" @guess="${this.handleGuess}"></element-guess>
-      <element-result @close="${this.handleCloseResult}" @gameOver="${this.handleGameOver}"></element-result>
+      <element-result @close="${this.handleCloseResult}"></element-result>
       <element-scores @close="${this.handleCloseScores}"></element-scores>
     `;
   }
@@ -168,12 +169,10 @@ export class ElementApp extends LitElement {
     this.gameState = endRound(this.gameState, event.detail);
   }
 
-  handleGameOver() {
-    this.scoresElement.open = true;
-  }
-
   handleCloseResult() {
-    if (roundInProgress(this.gameState)) {
+    if (gameOver(this.gameState)) {
+      this.scoresElement.open = true;
+    } else if (roundInProgress(this.gameState)) {
       // Start a new round
       this.gameState = startRound(
         this.gameState,
