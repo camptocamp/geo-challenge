@@ -9,6 +9,10 @@
   --wa-color-text-normal: #000;
   --wa-color-text-link: var(--wa-color-brand-60);
 
+  /* Breakpoints - Note: CSS custom properties cannot be used in @media queries */
+  /* Use these values as reference when writing media queries */
+  --breakpoint-mobile: 600px;
+
   --wa-color-brand-95: #ffd6bc;
   --wa-color-brand-90: #ffc6a3;
   --wa-color-brand-80: #ffa770;
@@ -27,37 +31,50 @@
   --wa-color-brand-on: var(--wa-color-brand-10);
   --wa-color-brand-fill-loud: var(--wa-color-brand-60);
 }
+
 @layer wa-theme-overrides {
-  wa-button.brand::part(base) {
-    text-transform: uppercase;
-    font-size: 13px;
-    padding: 8px 20px;
-    height: auto;
+  wa-button.brand {
+    &::part(base) {
+      text-transform: uppercase;
+      font-size: 13px;
+      padding: 8px 20px;
+      height: auto;
+
+      &:hover {
+        background-color: var(--c2c-color-hover);
+      }
+    }
+
+    &[appearance="outlined"]::part(base) {
+      color: var(--wa-color-brand);
+      border-color: var(--wa-color-brand);
+    }
   }
-  wa-button.brand::part(base):hover {
-    background-color: var(--c2c-color-hover);
-  }
-  wa-button.brand[appearance="outlined"]::part(base) {
-    color: var(--wa-color-brand);
-    border-color: var(--wa-color-brand);
-  }
+
   wa-dialog::part(dialog),
   wa-select::part(listbox),
   wa-select::part(combobox),
   wa-card {
     border-radius: 0;
   }
-  wa-select::part(combobox) {
-    outline: none;
-  }
-  wa-select::part(expand-icon) {
-    color: var(--wa-color-brand);
+
+  wa-select {
+    &::part(combobox) {
+      outline: none;
+    }
+
+    &::part(expand-icon) {
+      color: var(--wa-color-brand);
+    }
   }
 
-  wa-card::part(header),
-  wa-card::part(footer) {
-    border-block-start-color: transparent;
-    border-block-end-color: transparent;
+  wa-card {
+
+    &::part(header),
+    &::part(footer) {
+      border-block-start-color: transparent;
+      border-block-end-color: transparent;
+    }
   }
 }
 
@@ -71,9 +88,10 @@ body,
   overscroll-behavior: none;
 }
 
-/* Prevent unwanted gestures on the Cesium canvas */
+/* Cesium canvas styles */
 #cesium {
   touch-action: none;
+  cursor: move;
 }
 
 .hidden {
@@ -92,22 +110,23 @@ body,
   padding-left: max(16px, env(safe-area-inset-left));
   padding-right: max(16px, env(safe-area-inset-right));
   gap: 8px;
-}
 
-.header .buttons {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  flex-shrink: 0;
+  & .buttons {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-shrink: 0;
+  }
 }
 
 .header-logo {
   display: flex;
   flex-shrink: 0;
-}
-.header-logo img {
-  background-color: #fff;
-  height: 2.5rem;
+
+  & img {
+    background-color: #fff;
+    height: 2.5rem;
+  }
 }
 
 cesium-compass-bar {
@@ -117,6 +136,24 @@ cesium-compass-bar {
   border-radius: var(--wa-border-radius-m);
   background-color: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(2px);
+
+  &::part(label) {
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  &::part(label major) {
+    font-size: 14px;
+  }
+
+  &::part(tick) {
+    height: 4px;
+  }
+
+  &::part(center-tick) {
+    height: 6px;
+    border-radius: 0;
+  }
 }
 
 /* Mobile header adjustments */
@@ -127,32 +164,16 @@ cesium-compass-bar {
     padding-left: max(8px, env(safe-area-inset-left));
     padding-right: max(8px, env(safe-area-inset-right));
     gap: 4px;
+
+    & .buttons wa-button::part(base) {
+      padding: 4px 8px;
+    }
   }
+
   cesium-compass-bar {
     flex: 1 1 100px;
     min-width: 80px;
   }
-  .header .buttons wa-button::part(base) {
-    padding: 4px 8px;
-  }
-}
-cesium-compass-bar::part(label) {
-  font-size: 12px;
-  font-weight: 700;
-}
-cesium-compass-bar::part(label major) {
-  font-size: 14px;
-}
-cesium-compass-bar::part(tick) {
-  height: 4px;
-}
-cesium-compass-bar::part(center-tick) {
-  height: 6px;
-  border-radius: 0;
-}
-
-#cesium {
-  cursor: move;
 }
 
 element-guess wa-card {
@@ -163,11 +184,21 @@ element-guess wa-card {
   bottom: 16px;
   right: 16px;
   max-width: calc(100% - 32px);
+
+  &:hover {
+    width: 500px;
+    height: 500px;
+  }
+
+  &::part(header) {
+    font-weight: var(--wa-font-weight-bold);
+  }
+
+  &::part(body) {
+    height: 100%;
+  }
 }
-element-guess wa-card:hover {
-  width: 500px;
-  height: 500px;
-}
+
 @media (max-width: 600px) {
   element-guess wa-card {
     width: 100%;
@@ -176,114 +207,121 @@ element-guess wa-card:hover {
     bottom: -400px;
     right: 0;
     transition: all var(--wa-transition-fast) var(--wa-transition-easing);
+
+    &:hover {
+      width: 100%;
+      bottom: 0;
+    }
   }
-  element-guess wa-card:hover {
+}
+
+element-result {
+  & element-map {
+    height: 300px;
+    pointer-events: none;
+  }
+}
+
+element-country-selector {
+  & .country-cards wa-card {
+    cursor: pointer;
+
+    &.selected {
+      border-color: var(--wa-color-brand);
+    }
+
+    & .flag {
+      font-size: var(--wa-font-size-2xl);
+    }
+  }
+
+  & .country-selector-footer {
+    display: flex;
+    justify-content: space-between;
     width: 100%;
-    bottom: 0;
   }
 }
 
-element-guess wa-card::part(header) {
-  font-weight: var(--wa-font-weight-bold);
-}
-element-guess wa-card::part(body) {
-  height: 100%;
-}
-
-element-result element-map {
-  height: 300px;
-  pointer-events: none;
-}
-
-element-country-selector .country-cards wa-card {
-  cursor: pointer;
-}
-element-country-selector .country-cards wa-card.selected {
-  border-color: var(--wa-color-brand);
-}
-
-element-country-selector .country-cards wa-card .flag {
-  font-size: var(--wa-font-size-2xl);
-}
-
-element-leaderboard tr.highlight {
-  background-color: var(--wa-color-focus);
+element-leaderboard {
+  & tr.highlight {
+    background-color: var(--wa-color-focus);
+  }
 }
 
 /* Tutorial styles */
-element-tutorial .tutorial-content {
-  text-align: center;
-  max-width: 500px;
-}
+element-tutorial {
+  & .tutorial-content {
+    text-align: center;
+    max-width: 500px;
 
-element-tutorial .step-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: var(--wa-color-surface-border);
-  transition: background-color 0.2s ease;
-}
+    & h2 {
+      margin: 0;
+      font-size: var(--wa-font-size-xl);
+    }
 
-element-tutorial .step-dot.active {
-  background-color: var(--wa-color-brand);
-}
+    & p {
+      margin: 0;
+      color: var(--wa-color-text-muted);
+      line-height: 1.5;
+    }
+  }
 
-element-tutorial .step-dot.completed {
-  background-color: var(--wa-color-brand-80);
-}
+  & .step-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--wa-color-surface-border);
+    transition: background-color 0.2s ease;
 
-element-tutorial .tutorial-content h2 {
-  margin: 0;
-  font-size: var(--wa-font-size-xl);
-}
+    &.active {
+      background-color: var(--wa-color-brand);
+    }
 
-element-tutorial .tutorial-content p {
-  margin: 0;
-  color: var(--wa-color-text-muted);
-  line-height: 1.5;
-}
+    &.completed {
+      background-color: var(--wa-color-brand-80);
+    }
+  }
 
-element-tutorial .tutorial-image {
-  max-width: 100%;
-  max-height: 40vh;
-  object-fit: contain;
-  border-radius: var(--wa-border-radius-m);
-  border: 1px solid var(--wa-color-surface-border);
+  & .tutorial-image {
+    max-width: 100%;
+    max-height: 40vh;
+    object-fit: contain;
+    border-radius: var(--wa-border-radius-m);
+    border: 1px solid var(--wa-color-surface-border);
+  }
 }
 
 @media (max-width: 600px) {
-  element-tutorial .tutorial-dialog::part(dialog) {
-    max-height: 90vh;
-    max-width: 95vw;
-    margin: auto;
-  }
+  element-tutorial {
+    & .tutorial-dialog::part(dialog) {
+      max-height: 90vh;
+      max-width: 95vw;
+      margin: auto;
+    }
 
-  element-tutorial .tutorial-content {
-    max-width: 100%;
-  }
+    & .tutorial-content {
+      max-width: 100%;
 
-  element-tutorial .tutorial-image {
-    max-height: 30vh;
-  }
+      & h2 {
+        font-size: var(--wa-font-size-l);
+      }
 
-  element-tutorial .tutorial-content h2 {
-    font-size: var(--wa-font-size-l);
-  }
+      & p {
+        font-size: var(--wa-font-size-s);
+      }
+    }
 
-  element-tutorial .tutorial-content p {
-    font-size: var(--wa-font-size-s);
+    & .tutorial-image {
+      max-height: 30vh;
+    }
   }
 }
 
-element-country-selector .country-selector-footer {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
-
-element-scores .save_score {
-  width: fit-content;
-  align-self: end;
+element-scores {
+  & .save_score {
+    width: fit-content;
+    align-self: end;
+  }
 }
 
 /*
