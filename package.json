@@ -13,8 +13,8 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@awesome.me/webawesome": "3.1.0",
-    "@cesium/engine": "22.2.0",
+    "@awesome.me/webawesome": "3.2.1",
+    "@cesium/engine": "22.3.0",
     "@geoblocks/cesium-compass-bar": "0.0.4",
     "@geoblocks/cesium-sphere-camera": "0.0.2",
     "@lit/context": "1.1.6",

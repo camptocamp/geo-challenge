@@ -79,11 +79,16 @@ export default class ElementScores extends Closable(LitElement) {
   }
 
   private async handleUsernameSet(event: CustomEvent) {
-    const username = event.detail as string;
+    const { username, email, wantContact } = event.detail;
     this.userInfo = { ...this.userInfo, username };
     setUsername(username);
     this.allowedToSubmitScore = await this.leaderboard.allowedToSubmitScore(this.userInfo, this.gameState);
     await this.saveScoreToLeaderboard();
+
+    // Save email if provided
+    if (email) {
+      await this.leaderboard.saveEmail(this.userInfo.userId, email, wantContact);
+    }
   }
 
   private async saveScore() {

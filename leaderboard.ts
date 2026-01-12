@@ -8,6 +8,7 @@ import {
   query,
   where,
   type Firestore,
+  addDoc,
 } from "firebase/firestore/lite";
 import { gameOver, gameScore } from "./game-state";
 import type { UserInfo } from "./userinfo";
@@ -25,18 +26,18 @@ export type SavePolicy = (leaderboard: Leaderboard, userInfo: UserInfo, gameStat
 export class Leaderboard {
   // FIXME: configurable via class options
   private static firebaseConfig = {
-    authDomain: "switzerland-guess.firebaseapp.com",
-    projectId: "switzerland-guess",
-    storageBucket: "switzerland-guess.appspot.com",
+    authDomain: "geo-challenge-9b811.firebaseapp.com",
+    projectId: "geo-challenge-9b811",
+    storageBucket: "geo-challenge-9b811.appspot.com",
   };
   private savePolicy: SavePolicy;
-  public readonly collection: string;
+  public readonly country: string;
   public readonly database: Firestore;
 
-  constructor(document: string, savePolicy: SavePolicy) {
+  constructor(country: string, savePolicy: SavePolicy) {
     this.savePolicy = savePolicy;
 
-    this.collection = document;
+    this.country = country;
     const app = initializeApp(Leaderboard.firebaseConfig);
     this.database = getFirestore(app);
   }
@@ -50,18 +51,23 @@ export class Leaderboard {
 
   async saveScore(userId: string, username: string, score: number) {
     // FIXME: only save if score is better
-    await setDoc(doc(this.database, this.collection, userId), {
+    // Use composite key: country_userId
+    const docId = `${this.country}_${userId}`;
+    await setDoc(doc(this.database, "scores", docId), {
       userId,
       username,
       score,
+      country: this.country,
     });
   }
 
   async getLeaderboard(): Promise<Array<ScoreEntry>> {
     const scores: Array<ScoreEntry> = [];
-    const querySnapshot = await getDocs(
-      collection(this.database, this.collection)
+    const q = query(
+      collection(this.database, "scores"),
+      where("country", "==", this.country)
     );
+    const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       const data = doc.data();
       // FIXME: see if we can access createTime
@@ -78,17 +84,30 @@ export class Leaderboard {
 
   async getUserId(username: string): Promise<string | null> {
     const q = query(
-      collection(this.database, this.collection),
-      where("username", "==", username)
+      collection(this.database, "scores"),
+      where("username", "==", username),
+      where("country", "==", this.country)
     );
     const querySnapshot = await getDocs(q);
     if (querySnapshot.size === 0) {
       return null;
     }
-    // Assume usernames are unique
+    // Assume usernames are unique per country
     const firstDoc = querySnapshot.docs[0];
     const data = firstDoc.data();
     return data.userId;
+  }
+
+  async saveEmail(userId: string, email: string, wantContact: boolean) {
+    // Save email to 'emails' collection
+    // Each document has userId, email, wantContact, country, timestamp
+    await addDoc(collection(this.database, "emails"), {
+      userId,
+      email,
+      wantContact,
+      country: this.country,
+      timestamp: new Date().toISOString(),
+    });
   }
 }
 
@@ -116,15 +135,16 @@ export async function onlyOnce(leaderboard: Leaderboard, userInfo: UserInfo, gam
 function userScore(leaderboard: Leaderboard, userId: string): Promise<number | null> {
   return new Promise(async (resolve) => {
     const q = query(
-      collection(leaderboard.database, leaderboard.collection),
-      where("userId", "==", userId)
+      collection(leaderboard.database, "scores"),
+      where("userId", "==", userId),
+      where("country", "==", leaderboard.country)
     );
     const querySnapshot = await getDocs(q);
     if (querySnapshot.size === 0) {
       resolve(null);
       return;
     }
-    // Assume only one entry per userId
+    // Assume only one entry per userId per country
     const firstDoc = querySnapshot.docs[0];
     const data = firstDoc.data();
     resolve(data.score);
