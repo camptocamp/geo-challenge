@@ -25,18 +25,18 @@ export type SavePolicy = (leaderboard: Leaderboard, userInfo: UserInfo, gameStat
 export class Leaderboard {
   // FIXME: configurable via class options
   private static firebaseConfig = {
-    authDomain: "geo-challenge-9b811.firebaseapp.com",
-    projectId: "geo-challenge-9b811",
-    storageBucket: "geo-challenge-9b811.appspot.com",
+    authDomain: "switzerland-guess.firebaseapp.com",
+    projectId: "switzerland-guess",
+    storageBucket: "switzerland-guess.appspot.com",
   };
   private savePolicy: SavePolicy;
-  public readonly country: string;
+  public readonly collection: string;
   public readonly database: Firestore;
 
-  constructor(country: string, savePolicy: SavePolicy) {
+  constructor(document: string, savePolicy: SavePolicy) {
     this.savePolicy = savePolicy;
 
-    this.country = country;
+    this.collection = document;
     const app = initializeApp(Leaderboard.firebaseConfig);
     this.database = getFirestore(app);
   }
@@ -50,7 +50,7 @@ export class Leaderboard {
 
   async saveScore(userId: string, username: string, score: number) {
     // FIXME: only save if score is better
-    await setDoc(doc(this.database, "scores", this.country, userId), {
+    await setDoc(doc(this.database, this.collection, userId), {
       userId,
       username,
       score,
@@ -60,7 +60,7 @@ export class Leaderboard {
   async getLeaderboard(): Promise<Array<ScoreEntry>> {
     const scores: Array<ScoreEntry> = [];
     const querySnapshot = await getDocs(
-      collection(this.database, "scores", this.country)
+      collection(this.database, this.collection)
     );
     querySnapshot.forEach((doc) => {
       const data = doc.data();
@@ -78,7 +78,7 @@ export class Leaderboard {
 
   async getUserId(username: string): Promise<string | null> {
     const q = query(
-      collection(this.database, "scores", this.country),
+      collection(this.database, this.collection),
       where("username", "==", username)
     );
     const querySnapshot = await getDocs(q);
@@ -116,7 +116,7 @@ export async function onlyOnce(leaderboard: Leaderboard, userInfo: UserInfo, gam
 function userScore(leaderboard: Leaderboard, userId: string): Promise<number | null> {
   return new Promise(async (resolve) => {
     const q = query(
-      collection(leaderboard.database, "scores", leaderboard.country),
+      collection(leaderboard.database, leaderboard.collection),
       where("userId", "==", userId)
     );
     const querySnapshot = await getDocs(q);
