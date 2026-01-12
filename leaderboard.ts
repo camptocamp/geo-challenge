@@ -50,7 +50,8 @@ export class Leaderboard {
 
   async saveScore(userId: string, username: string, score: number) {
     // FIXME: only save if score is better
-    await setDoc(doc(this.database, "scores", this.country, userId), {
+    const countryDocRef = doc(this.database, "scores", this.country);
+    await setDoc(doc(countryDocRef, "scores", userId), {
       userId,
       username,
       score,
@@ -59,9 +60,9 @@ export class Leaderboard {
 
   async getLeaderboard(): Promise<Array<ScoreEntry>> {
     const scores: Array<ScoreEntry> = [];
-    const querySnapshot = await getDocs(
-      collection(this.database, "scores", this.country)
-    );
+    const countryDocRef = doc(this.database, "scores", this.country);
+    const scoresCollectionRef = collection(countryDocRef, "scores");
+    const querySnapshot = await getDocs(scoresCollectionRef);
     querySnapshot.forEach((doc) => {
       const data = doc.data();
       // FIXME: see if we can access createTime
@@ -77,8 +78,10 @@ export class Leaderboard {
   }
 
   async getUserId(username: string): Promise<string | null> {
+    const countryDocRef = doc(this.database, "scores", this.country);
+    const scoresCollectionRef = collection(countryDocRef, "scores");
     const q = query(
-      collection(this.database, "scores", this.country),
+      scoresCollectionRef,
       where("username", "==", username)
     );
     const querySnapshot = await getDocs(q);
@@ -115,8 +118,10 @@ export async function onlyOnce(leaderboard: Leaderboard, userInfo: UserInfo, gam
 
 function userScore(leaderboard: Leaderboard, userId: string): Promise<number | null> {
   return new Promise(async (resolve) => {
+    const countryDocRef = doc(leaderboard.database, "scores", leaderboard.country);
+    const scoresCollectionRef = collection(countryDocRef, "scores");
     const q = query(
-      collection(leaderboard.database, "scores", leaderboard.country),
+      scoresCollectionRef,
       where("userId", "==", userId)
     );
     const querySnapshot = await getDocs(q);
