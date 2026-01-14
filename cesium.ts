@@ -34,6 +34,8 @@ Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI3NDYzN
 
 let BONUS_ENTITY_ID: string | undefined = undefined
 
+const season: 'winter' | 'summer' = 'winter';
+
 export async function createCesiumWidget(
   container: HTMLElement | string
 ): Promise<CesiumWidget> {
@@ -67,10 +69,13 @@ export async function createCesiumWidget(
   viewer.scene.globe.preloadSiblings = true;
   viewer.scene.globe.maximumScreenSpaceError = 1 // lower value - better quality
 
-  // for winter
-  viewer.scene.skyAtmosphere!.hueShift = 0;
-  viewer.scene.skyAtmosphere!.saturationShift = -0.3;
-  viewer.scene.skyAtmosphere!.brightnessShift = -0.15;
+  viewer.scene.moon!.show = false;
+
+  if (season === 'winter') {
+      viewer.scene.skyAtmosphere!.hueShift = 0;
+      viewer.scene.skyAtmosphere!.saturationShift = -0.3;
+      viewer.scene.skyAtmosphere!.brightnessShift = -0.15;
+  }
 
   // for better performance, tiles far from the camera are hidden with fog and do not load
   viewer.scene.fog.enabled = true;
@@ -102,8 +107,10 @@ export function setCameraPosition(viewer: CesiumWidget, position: Coordinate): v
     },
     duration: 0,
     complete: () => {
-      addSnow(viewer.scene);
-      // placeRandomModelNearCamera(viewer);
+      if  (season === 'winter') {
+          addSnow(viewer.scene);
+          // placeRandomModelNearCamera(viewer);
+      }
     }
   });
 
