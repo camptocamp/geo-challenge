@@ -34,7 +34,7 @@ Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI3NDYzN
 
 let BONUS_ENTITY_ID: string | undefined = undefined
 
-const season: 'winter' | 'summer' = 'winter';
+const season: 'winter' | 'summer' = 'summer';
 
 export async function createCesiumWidget(
   container: HTMLElement | string
