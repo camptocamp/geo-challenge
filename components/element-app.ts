@@ -17,7 +17,7 @@ import "./element-scores";
 import "./element-about";
 import "./element-tutorial";
 
-import {addBonusModelClickCallback, createCesiumWidget, setCameraPosition} from "../cesium";
+import {addBonusModelClickCallback, createCesiumWidget, setCameraPosition, setLayerForCountry} from "../cesium";
 import {
   endRound,
   gameOver,
@@ -136,11 +136,12 @@ export class ElementApp extends LitElement {
     this.showTutorial = true;
   }
 
-  handleCountrySelected(event: CustomEvent) {
+  async handleCountrySelected(event: CustomEvent) {
     this.gameState = {
       ...this.gameState,
       country: event.detail,
     };
+    await setLayerForCountry(this.viewer!, this.gameState.country);
 
     trackEvent("Game", "country_selected", event.detail);
     trackEvent("Game", "language_selected", document.documentElement.lang);

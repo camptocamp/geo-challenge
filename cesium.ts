@@ -5,7 +5,6 @@ import {
     Cartesian3,
     Math as CesiumMath,
     Ion,
-    ImageryLayer,
     IonImageryProvider,
     Cartesian2,
     Color,
@@ -19,10 +18,13 @@ import {
     ScreenSpaceEventHandler,
     JulianDate,
     type Scene,
-    type Particle
+    type Particle,
+    Rectangle,
+    UrlTemplateImageryProvider
 } from "@cesium/engine";
 
 import type { Coordinate } from "ol/coordinate";
+import type { CountryCode } from "./locations";
 
 Object.assign(RequestScheduler.requestsByServer, {
   "assets.ion.cesium.com:443": 28,
@@ -41,22 +43,9 @@ export async function createCesiumWidget(
 ): Promise<CesiumWidget> {
   const viewer = new CesiumWidget(container, {
     scene3DOnly: true,
-    // skyBox: false,
     requestRenderMode: true,
-    // see https://sandcastle.cesium.com/?id=imagery-assets-available-from-ion
-    baseLayer: ImageryLayer.fromProviderAsync(
-      IonImageryProvider.fromAssetId(3830182),
-        {
-            minimumTerrainLevel: 10 // do not load low-quality tiles for faster load of tiles we need
-        }
-    ),
-    // Swissimage:
-    // baseLayer: new ImageryLayer(
-    //   new UrlTemplateImageryProvider({
-    //     url: "https://wmts.geo.admin.ch/1.0.0/ch.swisstopo.swissimage/default/current/3857/{z}/{x}/{y}.jpeg",
-    //     rectangle: Rectangle.fromDegrees(5.140242, 45.398181, 11.47757, 48.230651),
-    //   })
-    // ),
+    // layer is set in setLayerForCountry
+    baseLayer: false,
     terrainProvider: await CesiumTerrainProvider.fromIonAssetId(1),
     shouldAnimate: true
   });
@@ -87,13 +76,6 @@ export async function createCesiumWidget(
   viewer.scene.globe.baseColor = Color.TRANSPARENT;
   viewer.scene.globe.undergroundColor = Color.TRANSPARENT;
 
-
-  const controller = viewer.scene.screenSpaceCameraController;
-  controller.enableTranslate = false;
-  controller.enableZoom = false;
-  controller.enableTilt = false;
-  controller.enableRotate = false;
-
   return viewer;
 }
 
@@ -115,6 +97,20 @@ export function setCameraPosition(viewer: CesiumWidget, position: Coordinate): v
   });
 
 }
+
+export async function setLayerForCountry(viewer: CesiumWidget, country: CountryCode) {
+  if (country === 'ch') {
+    // swissimage
+    viewer.imageryLayers.addImageryProvider(new UrlTemplateImageryProvider({
+        url: "https://wmts.geo.admin.ch/1.0.0/ch.swisstopo.swissimage/default/current/3857/{z}/{x}/{y}.jpeg",
+        rectangle: Rectangle.fromDegrees(5.140242, 45.398181, 11.47757, 48.230651),
+    }));
+  } else {
+    // google maps
+    viewer.imageryLayers.addImageryProvider(await IonImageryProvider.fromAssetId(3830182));
+  }
+}
+
 
 let snow: Primitive | undefined = undefined;
 const snowParticleSize = 12.0;
