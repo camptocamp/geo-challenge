@@ -29,6 +29,8 @@ export default {
   no_username: "Kein Benutzername eingegeben",
   username_taken: "Benutzername bereits vergeben",
   save: "Speichern",
+  email: "Email",
+  want_contact: "Ich möchte kontaktiert werden",
 
   tutorial_back: "Zurück",
   tutorial_next: "Weiter",
