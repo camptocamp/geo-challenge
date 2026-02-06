@@ -23,13 +23,14 @@ export default {
 
   game_over: "Vous avez terminé !",
   your_score: "Votre score",
-  username: "Ton nom",
+   username: "Ton surnom",
   submit_score: "Soumettre le score",
   new_game: "Rejouer",
   no_username: "Aucun nom d'utilisateur saisi",
   username_taken: "Nom d'utilisateur déjà pris",
   save: "Enregistrer",
   email: "Email",
+  email_required: "Email est requis",
   want_contact: "Je souhaite être contacté(e)",
 
   tutorial_back: "Précédent",
@@ -83,6 +84,15 @@ export default {
       Curieux d'en savoir plus ou envie de collaborer avec nous ?
       <a href="https://camptocamp.com/geo-challenge_formulaire" target="_blank">
         Faites-nous signe.</a> On vous répondra volontiers.
-    </p>
-  `,
+     </p>
+   `,
+
+    contact_me_content: `
+     <b>
+       Chez Camptocamp, nous construisons bien plus que des jeux.
+     </b>
+     <p>
+       Laissez-nous transformer vos données géospatiales en véritable intelligence commerciale.
+     </p>
+   `,
 } as Translation;
