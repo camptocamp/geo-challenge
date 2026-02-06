@@ -23,14 +23,15 @@ export default {
 
   game_over: "You finished!",
   your_score: "Your score",
-  username: "Your name",
+  username: "Your nickname",
   submit_score: "Save score",
   new_game: "Play again",
   no_username: "No username entered",
   username_taken: "Username already taken",
   save: "Save",
   email: "Email",
-  want_contact: "I want to be contacted",
+  email_required: "Email is required",
+  want_contact: "Tick this box if you'd like us to reach out to discuss a project.",
 
   tutorial_back: "Back",
   tutorial_next: "Next",
@@ -80,6 +81,15 @@ export default {
       Curious about what we do or thinking about working together?
       <a href="https://camptocamp.com/geo-challenge_form" target="_blank">
         Let us know.</a> We'll be in touch!
+    </p>
+  `,
+
+  contact_me_content: `
+    <b>
+      At Camptocamp, we build more than games.
+    </b>
+    <p>
+      Let us turn your geospatial data into real business intelligence.
     </p>
   `,
 } as Translation;

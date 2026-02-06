@@ -1,5 +1,6 @@
 import { html, LitElement } from "lit";
 import { customElement, property, query } from "lit/decorators.js";
+import { unsafeHTML } from "lit/directives/unsafe-html.js";
 import { Closable } from "../closable";
 import { LocalizeController } from "@shoelace-style/localize";
 
@@ -29,8 +30,9 @@ export default class ElementUsername extends Closable(LitElement) {
         <form class="input-validation-required">
           <wa-input autofocus label=${this.localize.term("username")} name="username" required></wa-input>
           <br/>
-          <wa-input label=${this.localize.term("email")} name="email" type="email"></wa-input>
+          <wa-input label=${this.localize.term("email")} name="email" type="email" required></wa-input>
           <br/>
+          ${unsafeHTML(this.localize.term("contact_me_content"))}
           <wa-checkbox name="wantContact">${this.localize.term("want_contact")}</wa-checkbox>
         </form>
         <wa-button slot="footer" variant="brand" @click="${this.save}" size="small" pill>
@@ -42,12 +44,17 @@ export default class ElementUsername extends Closable(LitElement) {
   }
 
   async save() {
-     const inputValue = this.username.value?.trim();
-     if (!inputValue || inputValue.length == 0) {
+     const usernameValue = this.username.value?.trim();
+     if (!usernameValue || usernameValue.length == 0) {
        this.username.hint = this.localize.term("no_username");
        return;
      }
-     const userId = await this.leaderboard.getUserId(inputValue);
+     const emailValue = this.email.value?.trim();
+     if (!emailValue || emailValue.length == 0) {
+       this.email.hint = this.localize.term("email_required");
+       return;
+     }
+     const userId = await this.leaderboard.getUserId(usernameValue);
      if (userId) {
        this.username.hint = this.localize.term("username_taken");
        return;
@@ -56,8 +63,8 @@ export default class ElementUsername extends Closable(LitElement) {
      this.valid = true;
      this.dispatchEvent(new CustomEvent("username", {
        detail: {
-         username: inputValue,
-         email: this.email.value?.trim() || "",
+         username: usernameValue,
+         email: emailValue,
          wantContact: this.wantContact.checked || false
        }
      }));
