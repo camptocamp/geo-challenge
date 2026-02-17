@@ -45,7 +45,7 @@ export default class ElementScores extends Closable(LitElement) {
 
   async willUpdate(changedProperties: PropertyValues) {
     if (changedProperties.has("gameState")) {
-      if (this.gameState.country && this.leaderboard?.collection !== this.gameState.country) {
+      if (this.gameState.country && this.leaderboard?.country !== this.gameState.country) {
         this.leaderboard = new Leaderboard(this.gameState.country, betterScore);
         this.scores = await this.leaderboard.getLeaderboard();
       }
