@@ -49,7 +49,7 @@ export default {
   tutorial_step4_description:
     "Your score depends on how close your guess is to the real location - a perfect guess earns 5000 points! Complete 3 rounds to finish a game. Your final score is the average of all rounds, so every guess counts. Save your score to the leaderboard and challenge others.",
 
-  about_content: `
+  about_content: (appendSearchParams: (url: string) => string) => `
     <h5>Hi! We're Camptocamp and we love maps.</h5>
     <p>
       It all started nearly 25 years ago with an Open Source project for
@@ -79,7 +79,7 @@ export default {
     </p>
     <p>
       Curious about what we do or thinking about working together?
-      <a href="https://camptocamp.com/geo-challenge_form" target="_blank">
+      <a href="${appendSearchParams('https://camptocamp.com/geo-challenge_form')}" target="_blank">
         Let us know.</a> We'll be in touch!
     </p>
   `,

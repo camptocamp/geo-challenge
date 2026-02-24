@@ -8,14 +8,16 @@ import "@awesome.me/webawesome/dist/components/icon/icon.js";
 
 import { Closable } from "../closable";
 import { LocalizeController } from "@shoelace-style/localize";
+import { appendSearchParams } from "../utils";
 
 @customElement("element-about")
 export default class ElementAbout extends Closable(LitElement) {
   private readonly localize = new LocalizeController(this);
+
   render() {
     return html`
       <wa-dialog label="${this.localize.term("about_us")}">
-        ${unsafeHTML(this.localize.term("about_content"))}
+        ${unsafeHTML(this.localize.term("about_content", appendSearchParams))}
 
         <div slot="footer">
           <wa-button variant="brand" appearance="outlined" size="small" data-dialog="close" pill>

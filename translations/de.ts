@@ -49,7 +49,7 @@ export default {
   tutorial_step4_description:
     "Deine Punktzahl hängt davon ab, wie nah dein Tipp am tatsächlichen Ort liegt. Ein perfekter Tipp erzielt 5000 Punkte! Schliesse 3 Runden ab, um ein Spiel zu beenden. Deine Endpunktzahl ist der Durchschnitt aller Runden, also zählt jeder Tipp. Speichere deine Punktzahl in der Bestenliste und fordere andere heraus.",
 
-  about_content: `
+  about_content: (appendSearchParams: (url: string) => string) => `
     <h5>Hi! Wir sind Camptocamp und wir lieben Karten.</h5>
     <p>
       Alles begann vor fast 25 Jahren mit einem Open-Source-Projekt für
@@ -83,7 +83,7 @@ export default {
     </p>
     <p>
       Neugierig geworden oder Interesse an einer Zusammenarbeit?
-      <a href="https://camptocamp.com/geo-challenge_formular" target="_blank">
+      <a href="${appendSearchParams('https://camptocamp.com/geo-challenge_formular')}" target="_blank">
         Melden Sie sich gern bei uns.</a> Wir freuen uns auf Sie.
      </p>
    `,

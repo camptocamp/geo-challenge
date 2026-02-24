@@ -49,7 +49,7 @@ export default {
   tutorial_step4_description:
     "Votre score dépend de la proximité de votre estimation avec l'emplacement réel : une estimation parfaite vous rapporte 5000 points! Terminez 3 manches pour achever une partie. Votre score final est la moyenne de toutes les manches, donc chaque estimation compte. Enregistrez votre score dans le classement et défiez les autres.",
 
-  about_content: `
+  about_content: (appendSearchParams: (url: string) => string) => `
     <h5>Salut ! Nous sommes Camptocamp et nous adorons les cartes.</h5>
     <p>
       Tout a commencé il y a près de 25 ans avec un projet Open Source pour
@@ -82,7 +82,7 @@ export default {
     </p>
     <p>
       Curieux d'en savoir plus ou envie de collaborer avec nous ?
-      <a href="https://camptocamp.com/geo-challenge_formulaire" target="_blank">
+      <a href="${appendSearchParams('https://camptocamp.com/geo-challenge_formulaire')}" target="_blank">
         Faites-nous signe.</a> On vous répondra volontiers.
      </p>
    `,
