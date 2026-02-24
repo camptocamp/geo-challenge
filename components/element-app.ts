@@ -1,6 +1,6 @@
 import { customElement, query, state } from "lit/decorators.js";
 import { provide } from "@lit/context";
-import { randomPositionInCountry } from "../utils";
+import { randomPositionInCountry, appendSearchParams } from "../utils";
 import { html, LitElement } from "lit";
 import { LocalizeController } from "@shoelace-style/localize";
 
@@ -81,7 +81,7 @@ export class ElementApp extends LitElement {
       ></element-country-selector>
       <div id="cesium"></div>
       <div class="header">
-        <a href="https://camptocamp.com/" target="_blank" class="header-logo">
+        <a href="${appendSearchParams('https://camptocamp.com/')}" target="_blank" class="header-logo">
           <img src="./images/C2C_2022_RGB_square_logo.svg" alt="C2C Logo" />
         </a>
         <cesium-compass-bar></cesium-compass-bar>

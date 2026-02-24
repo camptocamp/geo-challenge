@@ -73,3 +73,36 @@ function maxDistance(geometry: any): number {
   }
   return max;
 }
+
+/**
+ * Get all search parameters from the current URL as a query string
+ * Returns empty string if no parameters exist
+ * Example: "?utm_source=google&utm_medium=cpc&utm_campaign=summer"
+ */
+export function getSearchParamsString(): string {
+   const params = new URL(window.location.href).searchParams;
+   if (params.size === 0) return '';
+
+   const entries = Array.from(params.entries());
+   const queryString = entries.map(([key, value]) =>
+     `${encodeURIComponent(key)}=${encodeURIComponent(value)}`
+   ).join('&');
+
+   return queryString ? `?${queryString}` : '';
+ }
+
+/**
+ * Append search parameters to a given URL
+ * Example: appendSearchParams("https://camptocamp.com/")
+ *   with URL "?utm_source=google" returns "https://camptocamp.com/?utm_source=google"
+ */
+export function appendSearchParams(baseUrl: string): string {
+   const params = getSearchParamsString();
+   if (!params) return baseUrl;
+
+   // Check if URL already has query params
+   if (baseUrl.includes('?')) {
+     return `${baseUrl}&${params.slice(1)}`;
+   }
+   return baseUrl + params;
+ }
