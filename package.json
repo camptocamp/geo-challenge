@@ -13,23 +13,23 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@awesome.me/webawesome": "3.2.1",
-    "@cesium/engine": "22.3.0",
+    "@awesome.me/webawesome": "3.5.0",
+    "@cesium/engine": "24.0.0",
     "@geoblocks/cesium-compass-bar": "0.0.4",
     "@geoblocks/cesium-sphere-camera": "0.0.2",
     "@lit/context": "1.1.6",
     "@shoelace-style/localize": "3.2.1",
-    "@turf/bbox": "7.3.4",
-    "@turf/boolean-point-in-polygon": "7.3.4",
-    "@turf/distance": "7.3.4",
-    "@turf/helpers": "7.3.4",
-    "@turf/random": "7.3.4",
-    "firebase": "12.9.0",
+    "@turf/bbox": "7.3.5",
+    "@turf/boolean-point-in-polygon": "7.3.5",
+    "@turf/distance": "7.3.5",
+    "@turf/helpers": "7.3.5",
+    "@turf/random": "7.3.5",
+    "firebase": "12.12.0",
     "lit": "3.3.2",
-    "ol": "10.8.0"
+    "ol": "10.9.0"
   },
   "devDependencies": {
-    "vite": "7.3.2",
-    "vite-plugin-static-copy": "3.2.0"
+    "vite": "8.0.9",
+    "vite-plugin-static-copy": "4.1.0"
   }
 }

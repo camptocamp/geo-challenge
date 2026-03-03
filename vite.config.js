@@ -11,11 +11,15 @@ const cesiumBaseUrl = "cesiumStatic";
 export default defineConfig({
   base: "",
   build: {
-    rollupOptions: {
+    rolldownOptions: {
       output: {
-        manualChunks: {
-          cesium: ["@cesium/engine"],
-          countries: ["./data/countries.json"],
+        manualChunks: (id) => {
+          if (id.includes('@cesium/engine')) {
+            return 'cesium';
+          }
+          if (id.includes('data/countries.json')) {
+            return 'countries';
+          }
         },
       },
     },
@@ -34,10 +38,10 @@ export default defineConfig({
         { src: 'models', dest: '' },
         { src: 'images', dest: '' },
         { src: 'fonts', dest: '' },
-        { src: `${cesiumSource}/Build/ThirdParty`, dest: cesiumBaseUrl },
-        { src: `${cesiumSource}/Build/Workers`, dest: cesiumBaseUrl },
-        { src: `${cesiumSource}/Source/Assets`, dest: cesiumBaseUrl },
-        { src: `${cesiumSource}/Source/Widget`, dest: cesiumBaseUrl },
+        { src: `${cesiumSource}/Build/ThirdParty`, dest: `${cesiumBaseUrl}`, rename: { stripBase: 4 } },
+        { src: `${cesiumSource}/Build/Workers`, dest: `${cesiumBaseUrl}`, rename: { stripBase: 4 } },
+        { src: `${cesiumSource}/Source/Assets`, dest: `${cesiumBaseUrl}`, rename: { stripBase: 4 } },
+        { src: `${cesiumSource}/Source/Widget`, dest: `${cesiumBaseUrl}`, rename: { stripBase: 4 } },
       ],
     }),
   ],
