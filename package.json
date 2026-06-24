@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@awesome.me/webawesome": "3.5.0",
-    "@cesium/engine": "24.0.0",
+    "@cesium/engine": "26.0.0",
     "@geoblocks/cesium-compass-bar": "0.0.4",
     "@geoblocks/cesium-sphere-camera": "0.0.2",
     "@lit/context": "1.1.6",

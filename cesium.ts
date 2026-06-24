@@ -46,7 +46,9 @@ export async function createCesiumWidget(
     requestRenderMode: true,
     // layer is set in setLayerForCountry
     baseLayer: false,
-    terrainProvider: await CesiumTerrainProvider.fromIonAssetId(1),
+    terrainProvider: await CesiumTerrainProvider.fromIonAssetId(1, {
+        requestVertexNormals: true,
+    }),
     shouldAnimate: true
   });
 
