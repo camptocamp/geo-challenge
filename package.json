@@ -13,12 +13,12 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@awesome.me/webawesome": "3.5.0",
+    "@awesome.me/webawesome": "3.9.0",
     "@cesium/engine": "26.0.0",
     "@geoblocks/cesium-compass-bar": "0.0.4",
     "@geoblocks/cesium-sphere-camera": "0.0.2",
     "@lit/context": "1.1.6",
-    "@shoelace-style/localize": "3.2.1",
+    "@shoelace-style/localize": "3.2.2",
     "@turf/bbox": "7.3.5",
     "@turf/boolean-point-in-polygon": "7.3.5",
     "@turf/distance": "7.3.5",
