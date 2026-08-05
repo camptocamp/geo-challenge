@@ -14,6 +14,9 @@ import type WaInput from "@awesome.me/webawesome/dist/components/input/input.js"
 import type WaCheckbox from "@awesome.me/webawesome/dist/components/checkbox/checkbox.js";
 import type { Leaderboard } from "../leaderboard";
 
+// Marketing campaign email collection is currently deactivated. Set to true to reactivate.
+const EMAIL_COLLECTION_ENABLED = false;
+
 @customElement("element-username")
 export default class ElementUsername extends Closable(LitElement) {
   private readonly localize = new LocalizeController(this);
@@ -29,11 +32,13 @@ export default class ElementUsername extends Closable(LitElement) {
       <wa-dialog>
         <form class="input-validation-required">
           <wa-input autofocus label=${this.localize.term("username")} name="username" required></wa-input>
+          ${EMAIL_COLLECTION_ENABLED ? html`
           <br/>
           <wa-input label=${this.localize.term("email")} name="email" type="email" required></wa-input>
           <br/>
           ${unsafeHTML(this.localize.term("contact_me_content"))}
           <wa-checkbox name="wantContact">${this.localize.term("want_contact")}</wa-checkbox>
+          ` : ''}
         </form>
         <wa-button slot="footer" variant="brand" @click="${this.save}" size="small" pill>
           <wa-icon slot="end" name="arrow-right"></wa-icon>
@@ -49,10 +54,13 @@ export default class ElementUsername extends Closable(LitElement) {
        this.username.hint = this.localize.term("no_username");
        return;
      }
-     const emailValue = this.email.value?.trim();
-     if (!emailValue || emailValue.length == 0) {
-       this.email.hint = this.localize.term("email_required");
-       return;
+     let emailValue: string | undefined;
+     if (EMAIL_COLLECTION_ENABLED) {
+       emailValue = this.email.value?.trim();
+       if (!emailValue || emailValue.length == 0) {
+         this.email.hint = this.localize.term("email_required");
+         return;
+       }
      }
      const userId = await this.leaderboard.getUserId(usernameValue);
      if (userId) {
@@ -65,7 +73,7 @@ export default class ElementUsername extends Closable(LitElement) {
        detail: {
          username: usernameValue,
          email: emailValue,
-         wantContact: this.wantContact.checked || false
+         wantContact: EMAIL_COLLECTION_ENABLED ? (this.wantContact.checked || false) : false
        }
      }));
      // Reset valid flag and allow dialog to close
